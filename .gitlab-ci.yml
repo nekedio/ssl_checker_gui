@@ -20,7 +20,7 @@ check_lint:
     - chmod 700 ~/.ssh
     - git clone git@git.tatmedia.com:tatmedia/test.git test
     - cd test
-    - touch newFile.txt
+    - touch newFile1.txt
     - ls -la
     - git add .
     - git commit -m "test"
