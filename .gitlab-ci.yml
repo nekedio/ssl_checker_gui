@@ -9,6 +9,8 @@ check_lint:
   stage: lint
   interruptible: true
   script:
+    - git config --global user.email "eye-of-sauron@mail.com"
+    - git config --global user.name "Sauron Ruthless"
     - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
     - echo "$id_rsa" | tr -d '\r' | ssh-add - > /dev/null
@@ -16,4 +18,10 @@ check_lint:
     - touch ~/.ssh/known_hosts
     - echo "$known_hosts" >> ~/.ssh/known_hosts
     - chmod 700 ~/.ssh
-    - git@git.tatmedia.com:tatmedia/test.git
+    - git clone git@git.tatmedia.com:tatmedia/test.git test
+    - cd test
+    - touch newFile.txt
+    - ls -la
+    - git add .
+    - git commit -m "test"
+    - git push
