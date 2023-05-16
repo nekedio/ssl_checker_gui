@@ -16,3 +16,4 @@ check_lint:
     - touch ~/.ssh/known_hosts
     - echo "$known_hosts" >> ~/.ssh/known_hosts
     - chmod 700 ~/.ssh
+    - git@git.tatmedia.com:tatmedia/test.git
