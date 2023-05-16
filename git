@@ -1,0 +1,18 @@
+image: composer:2.1
+
+stages:
+  - lint
+  - phpstan
+  - notify
+
+check_lint:
+  stage: lint
+  interruptible: true
+  script:
+    - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - echo "$id_rsa" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - touch ~/.ssh/known_hosts
+    - echo "$known_hosts" >> ~/.ssh/known_hosts
+    - chmod 700 ~/.ssh
