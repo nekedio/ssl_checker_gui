@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.tatmedia</groupId>
     <artifactId>ssh-checker</artifactId>
-    <version>0.2</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <build>
-        <finalName>${project.name}</finalName>
+        <finalName>${project.name}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

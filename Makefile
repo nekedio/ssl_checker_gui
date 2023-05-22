@@ -1,8 +1,12 @@
 create-jar:
 	./mvnw clean compile package install
 
+auto-create-jar: update-config
+	./mvnw clean compile package install
+	cp target/ssh-checker-*.jar .
+
 run: create-jar
-	java -jar target/ssh-checker.jar
+	java -jar target/ssh-checker-*.jar
 
 update-config:
 	git clone git@git.tatmedia.com:tatmedia/checking-ssl.git temp
