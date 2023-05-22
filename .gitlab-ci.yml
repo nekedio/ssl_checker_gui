@@ -24,6 +24,7 @@ check_lint:
     - chmod 700 ~/.ssh
     - git clone git@git.tatmedia.com:tatmedia/ssl-checker-gui.git checker
     - cd checker
+    - make update-config
     - make auto-create-jar
     - git status
     - git add .
