@@ -9,6 +9,7 @@ check_lint:
   stage: lint
   interruptible: true
   script:
+    - java -version
     - git config --global user.email "eye-of-sauron@mail.com"
     - git config --global user.name "Sauron Ruthless"
     - apk add --no-cache make
