@@ -22,11 +22,9 @@ https://www.java.com/ru/download/help/index_installing.html
 
 ## Запуск на Linux:
 ```
-java -jar ssh-checker-1.0.jar
+java -jar ssh-checker*.jar
 ```
 или
 ```
-chmod -R 777 ssh-checker*.jar
+chmod -R 777 ssh-checker*.jar   // и запускать двойным надатием из гуи.
 ```
-и запускать двойным надатием из гуи.
-
