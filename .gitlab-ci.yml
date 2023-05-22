@@ -13,8 +13,8 @@ check_lint:
     - uname -a
     - apt-get update -y
     - apt-get install make git -y
-    - git config --global user.email "eye-of-sauron@mail.com"
-    - git config --global user.name "Sauron Ruthless"
+    - git config --global user.email "duke@mail.com"
+    - git config --global user.name "Duke Javberg"
     - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
     - echo "$id_rsa" | tr -d '\r' | ssh-add - > /dev/null
@@ -26,7 +26,6 @@ check_lint:
     - cd checker
     - make auto-create-jar
     - git status
-    # - git add .
-    # - git commit -m "test"
-    # - git push -o ci.skip
-
+    - git add .
+    - git commit -m "received a new .jar"
+    - git push -o ci.skip
