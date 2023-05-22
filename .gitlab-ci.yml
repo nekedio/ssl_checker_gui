@@ -22,7 +22,7 @@ check_lint:
     - cd test
     - touch newFile2.txt
     - ls -la
-    - git add .
-    - git commit -m "test"
-    - git push -o ci.skip
+    # - git add .
+    # - git commit -m "test"
+    # - git push -o ci.skip
 
