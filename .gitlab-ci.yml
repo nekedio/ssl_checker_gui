@@ -26,6 +26,8 @@ check_lint:
     - cd checker
     - make update-config
     - make auto-create-jar
+    - name_jar=$(echo target/ssh-checker*.jar | sed 's,target/,, g')
+    - sed '1i'$name_jar README.md > README.md
     - git status
     - git add .
     - git commit -m "received a new .jar"
