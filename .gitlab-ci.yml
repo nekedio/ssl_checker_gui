@@ -10,6 +10,7 @@ check_lint:
   interruptible: true
   script:
     - java -version
+    - uname -a
     - apk add --no-cache make git
     - git config --global user.email "eye-of-sauron@mail.com"
     - git config --global user.name "Sauron Ruthless"
