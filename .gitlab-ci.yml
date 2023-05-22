@@ -18,10 +18,10 @@ check_lint:
     - touch ~/.ssh/known_hosts
     - echo "$known_hosts" >> ~/.ssh/known_hosts
     - chmod 700 ~/.ssh
-    - git clone git@git.tatmedia.com:tatmedia/test.git test
-    - cd test
-    - touch newFile2.txt
-    - ls -la
+    - git clone git@git.tatmedia.com:tatmedia/ssl-checker-gui.git checker
+    - cd checker
+    - make auto-create-jar
+    - git status
     # - git add .
     # - git commit -m "test"
     # - git push -o ci.skip
