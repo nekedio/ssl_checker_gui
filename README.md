@@ -17,14 +17,9 @@
 ## Установка Java для Linux.
 https://www.java.com/ru/download/help/index_installing.html
 
-## Запуск на Windows:
+## Запуск:
 Два раза кликнуть по файлу с расширением .jar
 
-## Запуск на Linux:
 ```
 java -jar ssh-checker*.jar
-```
-или
-```
-chmod -R 777 ssh-checker*.jar   // и запускать двойным надатием из гуи.
 ```
