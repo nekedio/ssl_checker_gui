@@ -1,11 +1,8 @@
 # SSL checker GUI
 
-Гуевая прога для проверки актуальности ssl сертификатов на сайтах нашей компании. Хотя проверить можно любые.
-
-Для запуска необходима java 8 или выше.
-
-Последний релиз можно скачать по ссылке: [ssh-checker-1.0.jar](http://git.tatmedia.com/tatmedia/ssl-checker-gui/-/raw/main/ssh-checker-1.0.jar)
-
+Гуевая прога для проверки актуальности ssl сертификатов на сайтах нашей компании. Хотя проверить можно любые.  
+Для запуска необходима java 8 или выше.  
+Последний релиз можно скачать по ссылке: [ssh-checker-1.0.jar](http://git.tatmedia.com/tatmedia/ssl-checker-gui/-/raw/main/ssh-checker-1.0.jar)  
 Список доменов, по которым идет проверка в файле:
 [list_domen.py](http://git.tatmedia.com/tatmedia/checking-ssl/-/blob/main/list_domen.py)
 
