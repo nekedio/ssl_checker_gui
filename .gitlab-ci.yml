@@ -11,6 +11,7 @@ check_lint:
   script:
     - java -version
     - uname -a
+    - apt-get update
     - apt-get install make git
     - git config --global user.email "eye-of-sauron@mail.com"
     - git config --global user.name "Sauron Ruthless"
