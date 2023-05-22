@@ -11,7 +11,7 @@ check_lint:
   script:
     - java -version
     - uname -a
-    - apt install make git
+    - sudo apt install make git
     - git config --global user.email "eye-of-sauron@mail.com"
     - git config --global user.name "Sauron Ruthless"
     - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
