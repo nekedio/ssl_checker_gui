@@ -11,6 +11,7 @@ check_lint:
   script:
     - git config --global user.email "eye-of-sauron@mail.com"
     - git config --global user.name "Sauron Ruthless"
+    - apk add --no-cache make
     - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
     - echo "$id_rsa" | tr -d '\r' | ssh-add - > /dev/null
@@ -22,7 +23,6 @@ check_lint:
     - cd checker
     - make auto-create-jar
     - git status
-    - apk add --no-cache make
     # - git add .
     # - git commit -m "test"
     # - git push -o ci.skip
