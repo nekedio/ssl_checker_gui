@@ -10,9 +10,9 @@ check_lint:
   interruptible: true
   script:
     - java -version
+    - apk add --no-cache make git
     - git config --global user.email "eye-of-sauron@mail.com"
     - git config --global user.name "Sauron Ruthless"
-    - apk add --no-cache make
     - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
     - echo "$id_rsa" | tr -d '\r' | ssh-add - > /dev/null
