@@ -22,6 +22,7 @@ check_lint:
     - cd checker
     - make auto-create-jar
     - git status
+    - apk add --no-cache make
     # - git add .
     # - git commit -m "test"
     # - git push -o ci.skip
