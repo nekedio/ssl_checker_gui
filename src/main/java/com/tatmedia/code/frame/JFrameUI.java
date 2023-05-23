@@ -297,7 +297,6 @@ public class JFrameUI extends javax.swing.JFrame {
 
     private void jButton4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyPressed
         // TODO add your handling code here:
-        System.out.println("@@@@@@");
     }//GEN-LAST:event_jButton4KeyPressed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
