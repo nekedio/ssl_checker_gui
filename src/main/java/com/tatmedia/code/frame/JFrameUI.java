@@ -4,6 +4,7 @@
  */
 package com.tatmedia.code.frame;
 
+import com.tatmedia.code.checker.PaidTillChecker;
 import com.tatmedia.code.checker.SslChecker;
 import com.tatmedia.code.utils.ReadProperties;
 import java.util.Arrays;
@@ -55,6 +56,7 @@ public class JFrameUI extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SSL checker");
@@ -78,7 +80,7 @@ public class JFrameUI extends javax.swing.JFrame {
 
         jLabel1.setText("Вставьте список доменов через запятую (можно в кавычках):");
 
-        jButton2.setText("Проверить");
+        jButton2.setText("Проверить SSL");
         jButton2.setToolTipText("Проверить срок ssl сертиков");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +114,11 @@ public class JFrameUI extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        jButton4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton4KeyPressed(evt);
+            }
+        });
 
         jButton6.setText("Обернуть в ковычки");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +131,13 @@ public class JFrameUI extends javax.swing.JFrame {
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setText("Проверить срок домена");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
             }
         });
 
@@ -140,6 +154,8 @@ public class JFrameUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2))
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -175,7 +191,8 @@ public class JFrameUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton8))
                 .addContainerGap())
         );
 
@@ -183,21 +200,15 @@ public class JFrameUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.out.println("Проверить");
+        System.out.println("Проверить SSL");
 
-        jButton4ActionPerformed(evt);
+        normalizeHostLineAndToView();
 
         final SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws Exception {
-                final String content = getTextJTextArea1()
-                        .replace("\n", "")
-                        .replace(" ", "")
-                        .replace("\"", "")
-                        .replace("\'", "")
-                        .trim();
 
-                final List<String> newHosts = Arrays.asList(content.split(","));
+                final List<String> newHosts = Arrays.asList(jTextArea1.getText().split(",\n"));
 
                 int progressValue = 0;
                 jProgressBar1.setStringPainted(true);
@@ -266,6 +277,7 @@ public class JFrameUI extends javax.swing.JFrame {
         System.out.println("Отчистить");
         jProgressBar1.setValue(0);
         normalizeHostLineAndToView();
+        System.out.println("!!!");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -282,6 +294,57 @@ public class JFrameUI extends javax.swing.JFrame {
         removeDuplicatesAndToView();
         jProgressBar1.setValue(0);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyPressed
+        // TODO add your handling code here:
+        System.out.println("@@@@@@");
+    }//GEN-LAST:event_jButton4KeyPressed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Проверить срок домена");
+
+        normalizeHostLineAndToView();
+
+        final SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+
+                final List<String> newHosts = Arrays.asList(jTextArea1.getText().split(",\n"));
+
+                int progressValue = 0;
+                jProgressBar1.setStringPainted(true);
+                jProgressBar1.setMinimum(0);
+                jProgressBar1.setMaximum(newHosts.size());
+                final StringBuilder builder = new StringBuilder();
+                final PaidTillChecker checker = new PaidTillChecker();
+                for (String host : newHosts) {
+                    try {
+                        Thread.sleep(SLEEP_TIME);
+                    } catch (InterruptedException ex) {
+                        builder.append("ERROR! :(");
+                    }
+                    System.out.println("-> " + host);
+                    builder.append(host);
+                    builder.append(": ");
+                    try {
+                        builder.append("Домен оплачен до " + checker.check(host));
+                    } catch (Exception ex) {
+                        builder.append("Произошла неведомая ошибка :(");
+                    }
+                    builder.append("\n");
+                    progressValue += 1;
+                    jProgressBar1.setValue(progressValue);
+                }
+                jTextArea1.setText(builder.toString());
+
+                return null;
+            }
+        };
+
+        worker.execute();
+
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     public static void run() {
         /* Set the Nimbus look and feel */
@@ -324,16 +387,16 @@ public class JFrameUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 
-    private String getTextJTextArea1() {
-        return jTextArea1.getText();
-    }
-
+//    private String getTextJTextArea1() {
+//        return jTextArea1.getText();
+//    }
     private void normalizeHostLineAndToView() {
         encloseInQuotationMarksAndToView("");
     }
@@ -369,7 +432,7 @@ public class JFrameUI extends javax.swing.JFrame {
     private void removeDuplicatesAndToView() {
         normalizeHostLineAndToView();
 
-        final List<String> newHosts = Arrays.asList(getTextJTextArea1().split(",\n"));
+        final List<String> newHosts = Arrays.asList(jTextArea1.getText().split(",\n"));
         final Set<String> uniqueHosts = new HashSet(newHosts);
         final String line = uniqueHosts.stream().collect(Collectors.joining(",\n")) + ",\n";
 
@@ -379,7 +442,7 @@ public class JFrameUI extends javax.swing.JFrame {
     private void sortedHostLineAndToView() {
         normalizeHostLineAndToView();
 
-        final List<String> newHosts = Arrays.asList(getTextJTextArea1().split(",\n"));
+        final List<String> newHosts = Arrays.asList(jTextArea1.getText().split(",\n"));
         Collections.sort(newHosts);
         String line = newHosts.stream().collect(Collectors.joining(",\n")) + ",\n";
 
