@@ -9,7 +9,7 @@
 
 
 ## Установка Java для Windows.
-1) Качаем установщик Java отсюда: https://www.java.com/ru/download/manual.jsp (Выбираем "Windows Автономный режим (64-разрядная)")
+1) Качаем установщик Java отсюда: https://learn.microsoft.com/en-us/java/openjdk/download (Выбираем OpenJDK 17.0.7 LTS "microsoft-jdk-17.0.7-windows-aarch64.msi")
 2) Нажимаем на скачанный файл
 3) Открывается установщик, тыкаем на кнопку "Install"
 4) Дожидаемся окончания установки
