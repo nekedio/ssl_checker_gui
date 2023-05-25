@@ -16,7 +16,7 @@
 4) Java установлена
 
 ## Установка Java для Linux.
-https://www.java.com/ru/download/help/index_installing.html
+https://linuxways.net/debian/how-to-install-java-17-lts-jdk-17-on-debian-11/
 
 ## Запуск:
 Два раза кликнуть по файлу с расширением .jar
